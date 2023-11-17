@@ -1,5 +1,14 @@
 ﻿using System.Collections.Specialized;
 
+string password = "";
+
+do
+{
+    System.Console.WriteLine("Hello in order to speak to our Kescha enter your password: ");
+    password = Console.ReadLine();
+} while (password != "my");
+
+
 System.Console.Write("Hello, Enter your name: ");
 string name = Console.ReadLine();
 string greeting = $"Hello {name}, let`s calulate you age and others age.";
