@@ -1,32 +1,55 @@
-﻿using System.Collections.Specialized;
+﻿using KESCHA.Classes;
+using KESCHA.Enums;
 
-string password = "";
-
-do
+namespace KESCHA
 {
-    System.Console.WriteLine("Hello in order to speak to our Kescha enter your password: ");
-    password = Console.ReadLine();
-} while (password != "my");
+    class Program
+    {
+        static void Main()
+        {
+            try
+            {
+                Bird kescha = new Bird(name: "Kescha", age: 6);
+                Pet kasse = new Pet(name: "Kasse", age: 5);
+                kasse.Type = PetType.Cat;
+                kescha.Type = BirdType.kescha;
 
+                Console.WriteLine("Kescha was created: " + kescha.CreatedDate);
+                Console.WriteLine("Kasse was created: " + kasse.CreatedDate);
+                Console.WriteLine(kasse.Type);
+                Console.WriteLine(kescha.Type);
 
-System.Console.Write("Hello, Enter your name: ");
-string name = Console.ReadLine();
-string greeting = $"Hello {name}, let`s calulate you age and others age.";
+                Console.Write("Enter yuor name: ");
+                string userName = Console.ReadLine();
+                Console.WriteLine("Kescha says:");
+                kescha.Great(userName);
+                Console.WriteLine("Kasse  says:");
+                kasse.Great(userName);
+                kasse.Great2(userName);
 
-System.Console.Write("Enter your age please:");
-string ageAsString = Console.ReadLine();
-System.Console.WriteLine("Consverting....");
-int age = Convert.ToInt32(ageAsString);
-System.Console.WriteLine($"Succesfully converted your age is {age}");
-int ageKescha = 10;
-int ageDifference = age - ageKescha;
-System.Console.WriteLine($"The difference between you and kescha`s age is {ageDifference}");
+                Console.Write("Enter your age: ");
+                string ageAsString = Console.ReadLine();
 
-System.Console.WriteLine($"You are older than our KESCHA: {age > ageKescha}");
-System.Console.WriteLine($"You are older than or equal to our KESCHA: {age >= ageKescha}");
-System.Console.WriteLine($"You are older than our KESCHA: {age > ageKescha}");
-System.Console.WriteLine($"You are younger or equal than our KESCHA: {age <= ageKescha}");
-System.Console.WriteLine($"You are younger than our KESCHA: {age < ageKescha}");
-System.Console.WriteLine($"You are younger than our KESCHA: {age < ageKescha}");
-System.Console.WriteLine($"Your age and KESCHA`S age is equal {age == ageKescha}");
-System.Console.WriteLine($" Is your age and KESCHA`S age is equal {age != ageKescha}");
+                Console.WriteLine("Converting...");
+                int userAge = Convert.ToInt32(ageAsString);
+                Console.WriteLine($"Succesfuly converted! {userAge}");
+
+                kescha.CalculateAgeDifferenceWithNoReturn(userAge);
+                kescha.PrintAgeDifference();
+                kescha.CompareAges(userAge);
+                kescha.TellAboutFriends(userName, userAge);
+
+            }
+            catch (FormatException formatException)
+            {
+                Console.WriteLine($"Error was thrown.Message: {formatException.Message}");
+            }
+            catch (Exception excaption)
+            {
+                Console.WriteLine("Error was thrown. Type is not known ");
+            }
+            Console.WriteLine("Program ended..");
+
+        }
+    }
+}
